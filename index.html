@@ -94,10 +94,43 @@
   margin-top: 20px; 
   }
 
+.line {
+  width: 100%; 
+  height: 1px; 
+  background-color: #ccc; 
+  margin: 10px 0;
+}
+
+nav {
+    width: 640px; 
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+}
+
+
 </style>
-
-
-
 
 
 <section class="hero">
@@ -118,6 +151,153 @@
     </div>
   </div>
 </section>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <h2 class="title is-2 publication-title">Additional Experimental Results</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<nav>
+  <ul>
+      <li><a href="#section1">1. Long Video Generation</a></li>
+      <li><a href="#section2">2. Combine with AnimateDiff and SimDA <strong>[reviewer PpnJ]</strong></a></li>
+      <li><a href="#section3">3. Experimental results of training DSS network with every 100 timesteps <strong>[reviewer PpnJ]</strong></a></li>
+      <li><a href="#section4">4. Explanation of Normalized Mutual Information(NMI) <strong>[reviewer 9y8W]</strong> </a></li>
+
+  </ul>
+</nav>
+
+
+<!-- Long video generation result-->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <div class="hero-body" id="section1">
+      <h2 class="title is-3 has-text-centered">Long Video Generation</h2>
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <source src="static/assets/longvideo/sun.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        In the universe, the earth revolves around the sun. 
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- Combine with AnimateDiff-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container" id="section2">
+      <h2 class="title is-3 has-text-centered">Combine with AnimateDiff [5]</h2>
+        <table class="center-table">
+          <div class="large-4 columns is-centered">
+          </div>
+          <tr>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/AnimateDiff/A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A white swan swimming in the water.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              Dramatic ocean sunset.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              An apple is falling from a tree.
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Combine with SimDA-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Combine with SimDA [4]</h2>
+        <table class="center-table">
+          <div class="large-4 columns is-centered">
+          </div>
+          <tr>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/SimDA/A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A white swan swimming in the water.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              Dramatic ocean sunset.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              An apple is falling from a tree.
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</section>
+
+<!-- DSS every 100 steps results -->
+<section class="hero is-small ">
+  <div class="container is-max-desktop" id="section3">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Experimental results of training DSS network with every 100 timesteps</h2>
+      <img src="static/assets/images/DSS_result.png" id="tree" class="your-image-class" style="height: 100%; width: auto; display: block; margin: 0 auto;">
+    </div>
+    <h2 class="subtitle has-text-centered">
+      <span id="=latex-m">\( e_t \)</span> represents the transformation error at timestep <span id="=latex-m">\( t \)</span>.
+    </h2>
+  </div>
+</section>
+
+
+<!-- paired NMI values with visualizations of the motion matrices.  -->
+<section class="hero is-small ">
+  <div class="container is-max-desktop" id="section4">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Explanation of Normalized Mutual Information(NMI)</h2>
+      <img src="static/assets/images/NMI_result.png" id="tree" class="your-image-class" style="height: 100%; width: auto; display: block; margin: 0 auto;">
+    </div>
+  </div>
+</section>
+
+
+
+<div class="line"></div>
+
 
 
 
@@ -562,8 +742,6 @@ is processed by the rest of the diffusion model for video generation.
 
 
 
-
-
 <footer class="footer">
   <div class="container">
       <div class="content has-text-centered">
@@ -577,8 +755,8 @@ is processed by the rest of the diffusion model for video generation.
                   <p>[1] Hong W, Ding M, Zheng W, et al. Cogvideo: Large-scale pretraining for text-to-video generation via transformers[J]. arXiv preprint arXiv:2205.15868, 2022.</p>
                   <p>[2] An J, Zhang S, Yang H, et al. Latent-shift: Latent diffusion with temporal shift for efficient text-to-video generation[J]. arXiv preprint arXiv:2304.08477, 2023.</p>
                   <p>[3] Ho J, Salimans T, Gritsenko A, et al. Video diffusion models[J]. Advances in Neural Information Processing Systems, 2022, 35: 8633-8646.</p>
-                  <p>[4]Xing Z, Dai Q, Hu H, et al. Simda: Simple diffusion adapter for efficient video generation[J]. arXiv preprint arXiv:2308.09710, 2023.</p>
-                      
+                  <p>[4]Xing Z, Dai Q, Hu H, et al. Simda: Simple diffusion adapter for efficient video generation[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2024: 7827-7839.</p>
+                  <p>[5]Guo Y, Yang C, Rao A, et al. Animatediff: Animate your personalized text-to-image diffusion models without specific tuning[J]. arXiv preprint arXiv:2307.04725, 2023.</p>
                   <hr>
                   <p>
                     We are very grateful for the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
