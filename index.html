@@ -130,6 +130,7 @@ nav ul li a:hover {
 }
 
 
+
 </style>
 
 
@@ -201,6 +202,9 @@ nav ul li a:hover {
           <div class="large-4 columns is-centered">
           </div>
           <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              With Dr. Mo
+            </td>
             <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
               height="256"
               src="static/assets/CombinedResults/AnimateDiff/A_white_swan_swimming_in_the_water.gif">
@@ -215,6 +219,24 @@ nav ul li a:hover {
               </td>
           </tr>
           <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              Without Dr. Mo
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/AnimateDiff/Without_A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/Without_Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/Without_An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td></td>
             <td class="has-text-centered" width="256" valign="middle" halign="middle">
               A white swan swimming in the water.
             </td>
@@ -241,6 +263,9 @@ nav ul li a:hover {
           <div class="large-4 columns is-centered">
           </div>
           <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              With Dr. Mo
+            </td>
             <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
               height="256"
               src="static/assets/CombinedResults/SimDA/A_white_swan_swimming_in_the_water.gif">
@@ -255,6 +280,24 @@ nav ul li a:hover {
               </td>
           </tr>
           <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              Without Dr. Mo
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/SimDA/Without_A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/Without_Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/Without_An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td></td>
             <td class="has-text-centered" width="256" valign="middle" halign="middle">
               A white swan swimming in the water.
             </td>
@@ -270,12 +313,25 @@ nav ul li a:hover {
   </div>
 </section>
 
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <img class="centered-image" src="static/assets/images/combine_result.png"  style="height: 100%; width: 600px; display: block; margin: 10 auto;">
+    </div>
+    <div class="container is-max-desktop">
+      <h2 class="subtitle has-text-centered">The speed metrics are based on generating 16-frame videos at a resolution of 512x512. CLIPSIM is the average CLIP similarity between the video frames and the prompt.</h2>
+    </div>
+  </div>
+</section>
+
+
 <!-- DSS every 100 steps results -->
 <section class="hero is-small ">
   <div class="container is-max-desktop" id="section3">
     <div class="hero-body">
       <h2 class="title is-3 has-text-centered">Experimental results of training DSS network with every 100 timesteps</h2>
-      <img src="static/assets/images/DSS_result.png" id="tree" class="your-image-class" style="height: 100%; width: auto; display: block; margin: 0 auto;">
+      <img src="static/assets/images/DSS_result.png"  style="height: 100%; width: auto; display: block; margin: 0 auto;">
     </div>
     <h2 class="subtitle has-text-centered">
       <span id="=latex-m">\( e_t \)</span> represents the transformation error at timestep <span id="=latex-m">\( t \)</span>.
