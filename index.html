@@ -1,34 +1,809 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            font-size: 50px;
-            margin: 0;
-        }
-        p {
-            font-size: 20px;
-            color: #666;
-        }
-        a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Denoising Reuse: Exploiting Inter-frame Motion Consistency in Efficient Video Latent Generation</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
 </head>
 <body>
-    <h1>404</h1>
-    <p>Oops! The page you are looking for does not exist.</p>
+
+<!-- CSS -->
+<style>
+  .centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .item {
+    text-align: center;
+  }
+
+  .center-table {
+  margin-left: auto;
+  margin-right: auto;
+  
+  }
+
+  .center-table td {
+  text-align: center;
+  padding: 10px;
+  }
+
+  .center-table-transfer {
+  margin-left: auto;
+  margin-right: auto;
+  
+  }
+
+  .center-table-transfer td {
+  text-align: center;
+  padding: 50px;
+  }
+
+  .fixed-size {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; 
+  }
+
+.space-above {
+  margin-top: 20px; 
+  }
+
+.line {
+  width: 100%; 
+  height: 1px; 
+  background-color: #ccc; 
+  margin: 10px 0;
+}
+
+nav {
+    width: 640px; 
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+}
+
+
+
+</style>
+
+
+<section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Denoising Reuse: Exploiting Inter-frame Motion Consistency in Efficient Video Latent Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                Chenyu Wang<sup>*</sup>,</span>
+              <span class="author-block">
+                Shuo Yan<sup>*</sup>,</span>
+              <span class="author-block">
+                Yixuan Chen<sup>*</sup>,</span>
+                <span class="author-block">
+                  Xianwei Wang,</span>
+                <span class="author-block">
+                  Yujiang Wang,</span>
+                <span class="author-block">
+                  Mingzhi Dong,</span>
+                <span class="author-block">
+                  Xiaochen Yang,</span>
+                <span class="author-block">
+                  Dongsheng Li,</span>
+                <span class="author-block">
+                  Rui Zhu,</span>
+                <span class="author-block">
+                  David Clifton,</span>
+                <span class="author-block">
+                  Robert P. Dick,</span>
+                <span class="author-block">
+                  Qin Lv,</span>
+                <span class="author-block">
+                  Fan Yang,</span>
+                <span class="author-block">
+                  Tun Lu,</span>
+                <span class="author-block">
+                  Ning Gu,</span>
+                <span class="author-block">
+                  Li Shang,</span>
+
+                <div class="is-size-5 publication-authors">
+                  <!-- <span class="author-block">Institution Name<br>Conferance name and year</span> -->
+                  <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                </div>
+                  
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Video Generation Results -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Video Generation Results</h2>
+        <table class="center-table">
+          <div class="large-4 columns is-centered">
+          </div>
+          <br>
+          <tr>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                      height="256"
+                      src="static/assets/VideoGeneration/A person riding a horse.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGeneration/A big beautiful mountain with a waterfall, a long view.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGeneration/A hot air balloon takes to the sky.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGeneration/A boy playing guitar.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGeneration/A minion waved his hand and the UFO flew over.webp">
+              </td>
+          </tr>
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle">
+              A person riding a horse
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A big beautiful mountain with a waterfall, a long view
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A hot air balloon takes to the sky
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A boy playing guitar
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A minion waved his hand and the UFO flew over 
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                    height="256"
+                    src="static/assets/VideoGeneration/In the universe, the earth revolves around the sun.webp">
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/VideoGeneration/Red car running, a close-up video.webp">
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/VideoGeneration/A sailboat sailing on the sea.webp">
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/VideoGeneration/PeppaPig, Cartoon style, two pig running on the grassland.webp">
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/VideoGeneration/The plane went through the white clouds.webp">
+            </td>
+        </tr>
+        <tr>
+          <td class="has-text-centered " width="256" valign="middle" halign="middle">
+            In the universe, the earth revolves around the sun
+          </td>
+          <td class="has-text-centered" width="256" valign="middle" halign="middle">
+            Red car running, a close-up video
+          </td>
+          <td class="has-text-centered" width="256" valign="middle" halign="middle">
+            A sailboat sailing on the sea
+          </td>
+          <td class="has-text-centered" width="256" valign="middle" halign="middle">
+            PeppaPig, Cartoon style, two pig running on the grassland
+          </td>
+          <td class="has-text-centered" width="256" valign="middle" halign="middle">
+            The plane went through the white clouds
+          </td>
+        </tr>
+          </table>
+    </div>
+  </div>
+</section>
+<!-- End Video Generation Results -->
+
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Denoising-based diffusion models have attained impressive
+ image synthesis; however, their applications on videos
+can lead to unaffordable computational costs due to the per-frame
+denoising operations. In pursuit of efffcient video generation, we
+present a Diffusion Reuse MOtion (Dr. Mo) network to accelerate
+the video-based denoising process. Our crucial observation is that
+the latent representations in early denoising steps between adjacent
+ video frames exhibit high consistencies with motion clues.
+Inspired by the discovery, we propose to accelerate the video
+denoising process by incorporating lightweight, learnable motion
+features. Speciffcally, Dr. Mo will only compute all denoising steps
+for base frames. For a non-based frame, Dr. Mo will propagate
+the pre-computed based latents of a particular step with interframe
+ motions to obtain a fast estimation of its coarse-grained
+latent representation, from which the denoising will continue to
+obtain more sensitive and ffne-grained representations. On top
+of this, Dr. Mo employs a meta-network named Denoising Step
+Selector (DSS) to dynamically determine the step to perform
+motion-based propagations for each frame, which can be viewed
+as a tradeoff between quality and efffciency. Extensive evaluations
+on video generation and editing tasks indicate that Dr. Mo
+delivers widely applicable acceleration for diffusion-based video
+generations while effectively retaining the visual quality and
+style. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+    <div class="container is-max-desktop">
+        <img src="static/assets/images/model.jpg" height="200" width="1000"/>
+        <br> 
+        <h2 class="subtitle has-text-justified">
+Dr. Mo consists of two main components: the Motion Transformation Network (MTN) and Denoising Step Selector (DSS). MTN learns motion matrices
+from semantic latents extracted from U-Net and predicts motion matrices for future frames. The DSS is a meta-network that determines the appropriate transition
+step (denoted as <span id="latex-m">\( t^* \)</span>) for switching from motion-based propagations to denoising. After the transition step, those latent noise is processed by the rest of the diffusion model for video generation.
+
+
+</h2>
+<br>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-three-fifths">
+            <img src="static/assets/images/DSS.jpg" height="200" width="400">
+        </div>
+        <div class="column is-two-fifths has-text-justified">
+            <h2>
+              The DSS module consists of a bidirectional RNN network and an
+MLP, designed to predict the optimal timestep <span id="latex-m">\( \hat t \)</span> for transformation based on
+the input motion matrices at different timesteps. The model is trained using
+cross-entropy loss between <span id="latex-m">\( \hat t \)</span> and the ground truth timestep <span id="latex-m">\( t^* \)</span>.
+            </h2>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+
+
+<!-- Style transfer -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Style Transfer Results</h2>
+      <div class="item">
+        <h2 class="subtitle has-text-centered space-above">
+          Vanilla video (Left), Style transferred first frame (Middle), New style video (Right)
+        </h2>
+          <table class="center-table-transfer">
+            <tr>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256" height="256" src="static/assets/StyleTransfer/styletrans1-1.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletransfer1.png">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletrans1-2.webp">
+                </td>
+            </tr>
+            </table>
+      </div>
+        <div class="item">
+          <table class="center-table-transfer">
+            <tr>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256" height="256" src="static/assets/StyleTransfer/styletrans2-1.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletransfer2.png">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletrans2-2.webp">
+                </td>
+            </tr>
+            </table>
+        </div>
+        <div class="item">
+          <table class="center-table-transfer">
+            <tr>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256" height="256" src="static/assets/StyleTransfer/styletrans3-1.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletransfer3.png">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletrans3-2.webp">
+                </td>
+            </tr>
+            </table>
+        </div>
+        <div class="item">
+          <table class="center-table-transfer">
+            <tr>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256" height="256" src="static/assets/StyleTransfer/styletrans4-1.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletransfer4.png">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/StyleTransfer/styletrans4-2.webp">
+                </td>
+            </tr>
+            </table>
+            
+        </div>
+      
+    </div>
+  </div>
+</section>
+<!-- End Style transfer -->
+
+
+<!-- Interactive -->
+<section class="hero is-small" >
+  <div class="hero-body" style="display: flex; justify-content: center;"></div>
+  <h2 class="title is-3 has-text-centered">Motion Matrix</h2>
+  <h2 class="subtitle has-text-centered">
+    <br>
+    Hover over the patches to see the corresponding motion transformations between two frames
+    <br>
+</h2>
+    <div class="container is-max-desktop" >
+        <div style="width:800px; height: 300px; overflow: hidden;">
+          <embed type="text/html" src="/static/assets/interactive/cossim_face.html" height="400" width="800">
+        </div>
+    </div>
+    <div class="container is-max-desktop" >
+      <div style="width:800px; height: 300px; overflow: hidden;">
+        <embed type="text/html" src="/static/assets/interactive/cossim_girl_football.html" height="400" width="800">
+      </div>
+  </div>
+  <div class="container is-max-desktop" >
+    <div style="width:800px; height: 300px; overflow: hidden;">
+      <embed type="text/html" src="/static/assets/interactive/cossim_cars.html" height="400" width="800">
+    </div>
+  </div>
+<div class="container is-max-desktop" >
+  <div style="width:800px; height: 300px; overflow: hidden;">
+    <embed type="text/html" src="/static/assets/interactive/cossim_goose.html" height="400" width="800">
+  </div>
+</div>
+  <br>
+</div>
+</section>
+<!-- End Interactive -->
+
+
+
+
+<!-- Combine with AnimateDiff-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Combine with AnimateDiff [5]</h2>
+        <table class="center-table">
+          <div class="large-4 columns is-centered">
+          </div>
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              With Dr. Mo
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/AnimateDiff/A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              Without Dr. Mo
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/AnimateDiff/Without_A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/Without_Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/AnimateDiff/Without_An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A white swan swimming in the water.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              Dramatic ocean sunset.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              An apple is falling from a tree.
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Combine with SimDA-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Combine with SimDA [4]</h2>
+        <table class="center-table">
+          <div class="large-4 columns is-centered">
+          </div>
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              With Dr. Mo
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/SimDA/A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              Without Dr. Mo
+            </td>
+            <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+              height="256"
+              src="static/assets/CombinedResults/SimDA/Without_A_white_swan_swimming_in_the_water.gif">
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/Without_Dramatic_ocean_sunset.gif">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/CombinedResults/SimDA/Without_An_apple_is_falling_from_a_tree.gif">
+              </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A white swan swimming in the water.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              Dramatic ocean sunset.
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              An apple is falling from a tree.
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Video Generation Comparison -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Video Generation Comparison</h2>
+        <table class="center-table">
+          <div class="large-4 columns is-centered">
+          </div>
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              CogVideo[1]
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/CogVideo/026_A_person_playing_piano_52.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/CogVideo/075_A_person_doing_handstand_pushups_85.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/CogVideo/002_A_person_performing_a_bench_press_17.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/CogVideo/22_A_person_knitting.webp">
+              </td>
+          </tr> 
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              Latent-Shift[2]
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/Latent-Shift/701_A_person_playing_piano.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/Latent-Shift/5585_A_person_doing_handstand_pushups.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/Latent-Shift/7954_A_person_performing_a_bench_press.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/Latent-Shift/2810_A_person_knitting.webp">
+              </td>
+          </tr>   
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+              Dr. Mo (Ours)
+            </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/DrMo/A_person_playing_piano.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/DrMo/A_person_doing_handstand_pushups.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/DrMo/A_person_performing_a_bench_press.webp">
+              </td>
+              <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                height="256"
+                src="static/assets/VideoGenerationComparison/DrMo//A_person_knitting.webp">
+              </td>
+          </tr>
+
+
+          <tr>
+            <td class="has-text-centered " width="256" valign="middle" halign="middle">
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A person playing piano
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A person doing handstand pushups
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A person performing a bench press
+            </td>
+            <td class="has-text-centered" width="256" valign="middle" halign="middle">
+              A person knitting
+            </td>
+          </tr>
+          </table>
+          <table class="center-table">
+            <div class="large-4 columns is-centered">
+            </div>
+            <tr>
+              <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+                VDM[3]
+              </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/VDM/Mountain_river.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/VDM/Path_in_a_tropical_forest.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/VDM/Forest_in_Autumn.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/VDM/Dramatic_ocean_sunset.webp">
+                </td>
+            </tr> 
+            <tr>
+              <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+                SimDA[4]
+              </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/SimDA/Mountain river.gif">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/SimDA/path in a tropical forest.gif">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/SimDA/Forest in Autumn.gif">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/SimDA/Dramatic ocean sunset.gif">
+                </td>
+            </tr>   
+            <tr>
+              <td class="has-text-centered " width="256" valign="middle" halign="middle" style="font-size:20px; padding-top:110px">
+                Dr. Mo (Ours)
+              </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/DrMo/Mountain river.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/DrMo/Path in a tropical forest.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/DrMo/Forest in Autumn.webp">
+                </td>
+                <td style="padding-left: 0px; padding-bottom: 0px;"><img class="center" width="256"
+                  height="256"
+                  src="static/assets/VideoGenerationComparison/DrMo/Dramatic ocean sunset.webp">
+                </td>
+            </tr>
+            <tr>
+              <td class="has-text-centered " width="256" valign="middle" halign="middle">
+              </td>
+              <td class="has-text-centered" width="256" valign="middle" halign="middle">
+                Mountain river
+              </td>
+              <td class="has-text-centered" width="256" valign="middle" halign="middle">
+                Path in a tropical forest
+              </td>
+              <td class="has-text-centered" width="256" valign="middle" halign="middle">
+                Forest in Autumn
+              </td>
+              <td class="has-text-centered" width="256" valign="middle" halign="middle">
+                Dramatic ocean sunset
+              </td>
+            </tr>
+            </table>
+    </div>
+  </div>
+</section>
+<!-- End Video Generation Compare -->
+
+
+
+<footer class="footer">
+  <div class="container">
+      <div class="content has-text-centered">
+          <a class="icon-link" href="#">
+              <i class="fas fa-file-pdf"></i>
+          </a>
+      </div>
+      <div class="columns is-centered">
+          <div class="column is-8">
+              <div class="content">
+                  <p>[1] Hong W, Ding M, Zheng W, et al. Cogvideo: Large-scale pretraining for text-to-video generation via transformers[J]. arXiv preprint arXiv:2205.15868, 2022.</p>
+                  <p>[2] An J, Zhang S, Yang H, et al. Latent-shift: Latent diffusion with temporal shift for efficient text-to-video generation[J]. arXiv preprint arXiv:2304.08477, 2023.</p>
+                  <p>[3] Ho J, Salimans T, Gritsenko A, et al. Video diffusion models[J]. Advances in Neural Information Processing Systems, 2022, 35: 8633-8646.</p>
+                  <p>[4]Xing Z, Dai Q, Hu H, et al. Simda: Simple diffusion adapter for efficient video generation[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2024: 7827-7839.</p>
+                  <p>[5]Guo Y, Yang C, Rao A, et al. Animatediff: Animate your personalized text-to-image diffusion models without specific tuning[J]. arXiv preprint arXiv:2307.04725, 2023.</p>
+                  <hr>
+                  <p>
+                    We are very grateful for the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+                    <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+
 </body>
 </html>
